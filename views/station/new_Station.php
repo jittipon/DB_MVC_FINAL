@@ -4,6 +4,7 @@
         <div class="form-group mt-2 ml-3 mr-3">
             <label>Station_ID</label>
             <input type="text" class="form-control w-90" aria-describedby="IDhelp" name="Station_ID"/>
+            <input type="text" class="form-control w-90" aria-describedby="IDhelp" name="Station_ID" required/>
             <small id="IDhelp" class="form-text text-muted">You can type new ID station here.</small>
         </div>
 
@@ -12,6 +13,7 @@
         <div class="form-group ml-3 mr-3">
             <label>Station_Name</label>
             <input type="text" class="form-control w-90" name="Station_Name"/>
+            <input type="text" class="form-control w-90" name="Station_Name" required/>
     
         </div>
 
@@ -20,6 +22,8 @@
         <div class="form-group ml-3 mr-3">
             <label>Station_Address</label>
             <input type="text" class="form-control w-90" name="Station_Address"/>
+            <label>Institution Name</label>
+            <input type="text" class="form-control w-90" name="Station_Address" required/>
     
         </div>
 
@@ -28,6 +32,7 @@
         <div class="form-group ml-3 mr-3">
             <label>Station_StartTime</label>
             <input type="time" class="form-control w-90" name="Station_StartTime"/>
+            <input type="time" class="form-control w-90" name="Station_StartTime" required/>
     
         </div>
 
@@ -36,6 +41,7 @@
         <div class="form-group ml-3 mr-3">
             <label>Station_DayBeforeBook</label>
             <input type="text" class="form-control w-90" name="Station_DayBeforeBook"/>
+            <input type="text" class="form-control w-90" name="Station_DayBeforeBook" required/>
     
         </div>
 
@@ -53,6 +59,7 @@
         <div class="form-group">
             <label for="Province">จังหวัด</label>
             <select class="form-control w-90" name="Province_Id" id="Province">
+            <select class="form-control w-90" name="Province_Id" id="Province" required>
             <?php echo "<option hidden='hidden'>Select Province</option>";
             foreach($Province_list as $Province){
                     echo "<option value=$Province->Province_Id>$Province->Province_NameTH</option>";
@@ -64,6 +71,8 @@
         <div class="form-group">
             <label for="Amphure">อำเภอ</label>
             <select class="form-control w-90" name="Amphure_Id" id="Amphure">
+            <label for="Amphure">อำเภอ/เขต</label>
+            <select class="form-control w-90" name="Amphure_Id" id="Amphure" required>
             <?php echo "<option hidden='hidden'>Select Province First</option>";?>
             </select>
         </div>
@@ -71,6 +80,8 @@
         <div class="form-group">
             <label for="District">เขต/ตำบล</label>
             <select class="form-control w-90" name="District_Id" id="District">
+            <label for="District">ตำบล/เเขวง</label>
+            <select class="form-control w-90" name="District_Id" id="District" required>
             <?php echo "<option hidden='hidden'>Select Amphure First</option>";?>
             </select>
         </div> 

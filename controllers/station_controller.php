@@ -41,9 +41,14 @@ class StationController
         $id = $_GET['Station_ID'];
         $Station = Station::get($id);
 
+        $Province_list = Province::getAll();
+        $Amphure_list = Amphure::getByProvince($Station->Province_Id);
+        $District_list = District::getByAmphure($Station->Amphure_Id);
+
         echo "<br>now is up date ID  = $id<br><br>";
         require_once('views/station/updateForm_station.php');    
     }
+    
 
     public function update(){
         $ID = $_GET['Station_ID'];
@@ -53,6 +58,7 @@ class StationController
         $Station_StartTime= $_GET['Station_StartTime'];
         $Station_DayBeforeBook=$_GET['Station_DayBeforeBook'];
         $District_ID=$_GET['District_ID'];
+        $District_ID=$_GET['District_Id'];
         
         Station::update($Station_ID,$Station_Name,$Station_Address,$Station_StartTime,$Station_DayBeforeBook,$District_ID,$ID);
         stationController::index();

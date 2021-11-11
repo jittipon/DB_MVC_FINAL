@@ -20,6 +20,7 @@
 
 <div class="form-group ml-3 mr-3">
     <label>Station_Address</label>
+    <label>Institution Name</label>
     <input type="text" class="form-control w-90" name="Station_Address" value ="<?php echo $Station->Station_Address;?>"/>
     
 </div>
@@ -45,12 +46,47 @@
 <!-- <label>Station_DayBeforeBook <input type="text" name="Station_DayBeforeBook" value ="<?php echo $Station->Station_DayBeforeBook;?>"/></label><br> -->
 
 <div class="form-group ml-3 mr-3 mb-5">
+<!-- <div class="form-group ml-3 mr-3 mb-5">
     <label>District_ID</label>
     <input type="text" class="form-control w-90" name="District_ID" value ="<?php echo $Station->District_ID;?>"/>
     
 </div>
+</div> -->
 
 <!-- <label>District_ID <input type="text" name="District_ID" value ="<?php echo $Station->District_ID;?>"/></label><br> -->
+
+        <div class="form-group">
+            <label for="Province">จังหวัด</label>
+            <select class="form-control w-90" name="Province_Id" id="Province">
+            <?php foreach($Province_list as $Province){
+                echo "<option value=$Province->Province_Id";
+                if($Province->Province_Id == $Station->Province_Id) {echo " selected='selected'";}
+                echo ">$Province->Province_NameTH</option>";
+            }?>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="Amphure">อำเภอ/เขต</label>
+            <select class="form-control w-90" name="Amphure_Id" id="Amphure">
+            <?php foreach($Amphure_list as $Amphure){
+                echo "<option value=$Amphure->Amphure_Id";
+                if($Amphure->Amphure_Id == $Station->Amphure_Id) {echo " selected='selected'";}
+                echo ">$Amphure->Amphure_NameTH</option>";
+            }?>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="District">ตำบล/เเขวง</label>
+            <select class="form-control w-90" name="District_Id" id="District">
+            <?php foreach($District_list as $District){
+                echo "<option value=$District->District_Id";
+                if($District->District_Id == $Station->District_ID) {echo " selected='selected'";}
+                echo ">$District->District_NameTH</option>";
+            }?>
+            </select>
+        </div> 
 
 
 <br>
@@ -66,5 +102,46 @@
 
 </div>
 
+
+<script type="text/javascript">
+        $(document).ready(function(){
+                $("#Province").change(function(){
+                        var Province_id=$(this).val();
+                        $.ajax({
+                                url:"./provinceOnChange.php",
+                                method:"GET",
+                                data:{Province_Id:Province_id},
+                                success:function(result){
+                                        $("#Amphure").html(result);
+                                }
+                        });
+                });
+
+                $("#Province").change(function(){
+                        var Amphure_id=0;
+                        $.ajax({
+                                url:"./amphureOnChange.php",
+                                method:"GET",
+                                data:{Amphure_Id:Amphure_id},
+                                success:function(result){
+                                        $("#District").html(result);
+                                }
+                        });
+                });
+
+                $("#Amphure").change(function(){
+                        var Amphure_id=$(this).val();
+                        $.ajax({
+                                url:"./amphureOnChange.php",
+                                method:"GET",
+                                data:{Amphure_Id:Amphure_id},
+                                success:function(result){
+                                        $("#District").html(result);
+                                }
+                        });
+                 });
+
+        });
+</script>
 
 
